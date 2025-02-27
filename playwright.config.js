@@ -15,14 +15,14 @@ import { defineConfig, devices } from '@playwright/test';
 
 const config = {
   testDir: './tests',
-  timeout: 1000 * 1000,
+  timeout: 1000000 * 1000,
   expect: {
     timeout: 5000
   },
   reporter: 'html',
   use: {
     browserName: 'chromium',
-    headless: false,
+    headless: true,
     viewport: { width: 1920, height: 1080 },
     screenshot: 'on',
     trace: 'retain-on-failure',

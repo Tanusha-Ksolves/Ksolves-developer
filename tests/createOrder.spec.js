@@ -21,7 +21,8 @@ test('createOrder', async ({browser}) => {
   await userPassword.fill("ksolves@123");
   await signIn.click();
 
-for(let i=1 ; i<11; i++){
+for(let i=1 ; i<1000; i++){
+  
   
   await page.locator("//a[@class='page-title-action']").click({timeout : 50000});
   await page.locator("//span[@id='select2-customer_user-container']").click();
@@ -42,6 +43,7 @@ for(let i=1 ; i<11; i++){
 
   await page.locator("//span[@class='select2-selection__placeholder']").click();
   await page.locator("//span/input[@class='select2-search__field']").fill("abc",{timeout : 3000});
+
   await page.locator("//li[text()='Pro 556 2 (ABCD) – Stock: 0']").click();
 
   await page.locator("//button[@id='btn-ok']").click({timeout : 5000});
@@ -57,13 +59,17 @@ for(let i=1 ; i<11; i++){
   await page.keyboard.press("ArrowDown");
 
   await page.locator("//textarea[@name='order_note']").fill("Order "+ i);
+  console.log("Order Created : " + i );
+
+  
 
   //await page.pause();
-  await page.locator("//button[text()='Create']").click({timeout : 4000});
+  await page.locator("//button[text()='Create']").click({timeout : 40000});
 
 }
-  
 }
+
+
 );
 
 
