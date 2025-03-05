@@ -23,6 +23,7 @@ class ContactUsPage{
     async goToWebsite(){
         await this.page.goto("https://developer.ksolves.net/");
         await this.page.waitForLoadState("load");
+        await this.confirmationModal.click();
     }
 
 
@@ -33,7 +34,6 @@ class ContactUsPage{
     async contactUsFillFields(character){
         
         await this.fullName.click();
-        await this.confirmationModal.click();
         await this.fullName.fill("test automation");
         await this.emailAddress.click();
         await this.emailAddress.fill("test.automation@gmail.com");

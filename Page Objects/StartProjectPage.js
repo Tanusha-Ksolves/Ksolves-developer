@@ -22,7 +22,6 @@ class StartProjectPage{
 
     async goToWebsite(){
         await this.page.goto("https://developer.ksolves.net/");
-        await this.page.waitForLoadState("load");
     }
 
 

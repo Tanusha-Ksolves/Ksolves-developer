@@ -9,8 +9,9 @@ class CareersPage{
         this.jobTitle = this.page.locator("[name='jobTitle']");
         this.email = this.page.locator("[name='email']");
         this.mobileNumber = this.page.locator("[name='mobileNumber']");
+        this.resumeCV = this.page.locator("[name='Resume/CV ']")
         this.captchaFrame = this.page.locator("iframe[title='reCAPTCHA']");
-        this.confimationMessage = this.page.locator(".wpcf7-response-output").nth(1);
+        this.confimationMessage = this.page.locator("//div[@class='wpcf7-response-output']").first();
     }
 
     async goToWebsite(){
@@ -20,10 +21,20 @@ class CareersPage{
 
 
     async goToCareerspage(){
-        await this.uploadResume.click();
+        await this.uploadResume.click({timeout: 5000});
+    }
+
+    async checkUI(){
+        await this.uploadResume.click({timeout: 5000});
+        expect(await this.page.locator("//div[@class='ks-content-box py-lg-5 py-4 bg-dark text-light']").screenshot()).toMatchSnapshot("screenshot1.png");
     }
 
     async careerFillFields(){
+        await this.firstName.isVisible();
+        await this.lasName.isVisible();
+        await this.jobTitle.isVisible();
+        await this.email.isVisible();
+        await this.mobileNumber.isVisible();
         await this.firstName.fill("John");
         await this.lasName.fill("Doe");
         await this.jobTitle.fill("Software Engineer");
@@ -32,6 +43,7 @@ class CareersPage{
     }
 
     async uploadFile(){
+        await this.resumeCV.isVisible();
         await this.page.setInputFiles("#file", "/home/tanushaksi159/Downloads/Calgary_Tower.pdf");
     }
 
@@ -44,10 +56,10 @@ class CareersPage{
     }
     
     async checkingSubmitConfirmation(){
-        await expect(this.confimationMessage).toHaveText("Thank you for your message. It has been sent.");
+        expect(this.confimationMessage).toHaveText("Thank you for your message. It has been sent.");
     }
 }
 
 
 
-module.exports= {CareersPage};  
+module.exports = {CareersPage};  

@@ -15,18 +15,18 @@ import { defineConfig, devices } from '@playwright/test';
 
 const config = {
   testDir: './tests',
-  timeout: 1000000 * 1000,
+  timeout: 100 * 1000,
   expect: {
     timeout: 10000
   },
   reporter: 'html',
   use: {
     browserName: 'chromium',
-    headless: true,
+    headless: false,
     viewport: { width: 1920, height: 1080 },
     screenshot: 'on',
     trace: 'retain-on-failure',
-
+    video: 'on'
   },
 
 }
