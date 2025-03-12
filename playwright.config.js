@@ -22,7 +22,7 @@ const config = {
   reporter: 'html',
   use: {
     browserName: 'chromium',
-    headless: false,
+    headless: true,
     viewport: { width: 1920, height: 1080 },
     screenshot: 'on',
     trace: 'retain-on-failure',
